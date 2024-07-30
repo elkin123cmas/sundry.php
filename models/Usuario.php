@@ -69,6 +69,24 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    public function validarEmail()
+    {
+        if (!$this->email) {
+            self::$alertas['error'][] = "El email es obligatorio";
+        }
+        return self::$alertas;
+    }
+    public function validarPassword()
+    {
+        if (!$this->password) {
+            self::$alertas['error'][] = "El password es obligatorio";
+        }
+        if (strlen($this->password) < 6) {
+            self::$alertas['error'][] = "El password debe contener al menos 6 caracteres";
+        }
+        return self::$alertas;
+    }
+
     //revisar si el usuario ya existe
     public function existeUsuario()
     {
@@ -91,5 +109,17 @@ class Usuario extends ActiveRecord
     public function crearToken()
     {
         $this->token = uniqid(); // Genera un token más seguro
+    }
+
+    public function comprobarPasswordAndVerification($password)
+    {
+        $resultado = password_verify($password, $this->password);
+
+        if (!$resultado || !$this->confirmado) {
+            self::$alertas['error'][] = 'Alguno de los datos es inválido. Verifica los datos ingresados.';
+        } else {
+            return true;
+        }
+        // debuguear($resultado);
     }
 }
