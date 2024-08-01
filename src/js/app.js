@@ -1,4 +1,13 @@
 let paso = 1;
+const pasoInicial = 1;
+const pasoFinal = 3;
+
+const cita = {
+    nombre: '',
+    fecha: '',
+    hora: '',
+    servicios: []
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     iniciarApp();
@@ -9,6 +18,10 @@ function iniciarApp() {
     mostrarSeccion();
     tabs();
     botonesPaginador();
+    paginaSiguiente();
+    paginaAnterior();
+
+    consultarAPI();
 }
 function mostrarSeccion() {
     //ocultar la seccion que tenga la clase de mostrar
@@ -59,5 +72,72 @@ function botonesPaginador() {
         paginaAnterior.classList.remove('ocultar');
         paginaSiguiente.classList.remove('ocultar');
     }
+    mostrarSeccion();
 
+}
+function paginaAnterior() {
+    const paginaAnterior = document.querySelector('#anterior');
+    paginaAnterior.addEventListener('click', function () {
+        if (paso <= pasoInicial) return;
+        paso--;
+
+        botonesPaginador();
+    })
+}
+function paginaSiguiente() {
+    const paginaSiguiente = document.querySelector('#siguiente');
+    paginaSiguiente.addEventListener('click', function () {
+        if (paso >= pasoFinal) return;
+        paso++;
+
+        botonesPaginador();
+    })
+}
+async function consultarAPI() {
+    try {
+        const url = 'http://localhost:3000/api/servicios';
+        const resultado = await fetch(url);
+        const servicios = await resultado.json();
+        mostrarServicios(servicios);
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+function mostrarServicios(servicios) {
+    servicios.forEach(servicio => {
+        const { id, nombre, precio } = servicio;
+
+        const nombreServicio = document.createElement('P');
+        nombreServicio.classList.add('nombre-servicio');
+        nombreServicio.textContent = nombre;
+
+        const precioServicio = document.createElement('P');
+        precioServicio.classList.add('precio-servicio');
+        precioServicio.textContent = `$${precio}`;
+
+        const serviciodDiv = document.createElement('DIV');
+        serviciodDiv.classList.add('servicio');
+        serviciodDiv.dataset.idServicio = id;
+        serviciodDiv.onclick = function () {
+            seleccionarServicio(servicio);
+        };
+
+        serviciodDiv.appendChild(nombreServicio);
+        serviciodDiv.appendChild(precioServicio);
+
+        document.querySelector('#servicios').appendChild(serviciodDiv);
+        // console.log(serviciodDiv);
+
+
+    })
+}
+function seleccionarServicio(servicio) {
+    const { id } = servicio;
+    const { servicios } = cita;
+    cita.servicios = [...servicios, servicio];
+
+    const divServicio = document.querySelector(`[data-id-servicio="${id}"]`);
+    divServicio.classList.add('seleccionado');
+    console.log(cita);
 }
