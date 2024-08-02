@@ -1,28 +1,81 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 .contenedor-app {
-    @include m.tablet {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        min-height: 100vh;
-    }
+    display: flex;
+    flex-direction: column;
 
     .imagen {
+        width: 100%;
         height: 20rem;
         background-image: url(../img/imgSkull1.jpg);
         background-size: cover;
         background-position: center center;
-
-        @include m.tablet {
-            height: auto;
-        }
-
     }
 
     .app {
-        width: 95%;
-        margin: 0 auto;
-        padding: 3rem 0;
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 3rem;
+    }
+
+    @include m.tablet {
+        flex-direction: row;
+
+        .imagen {
+            width: 50vw;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+        }
+
+        .app {
+            margin-left: 50vw;
+            height: 100%;
+        }
     }
 }
+
+
+
+// @use 'base/variables' as v;
+// @use 'base/mixins' as m;
+
+// .contenedor-app {
+//     @include m.tablet {
+//         display: grid;
+//         grid-template-columns: repeat(2, 1fr);
+//         min-height: 100vh;
+//     }
+
+//     .imagen {
+//         height: 20rem;
+//         background-image: url(../img/imgSkull1.jpg);
+//         background-size: cover;
+//         background-position: center center;
+
+//         @include m.tablet {
+//             height: auto;
+//         }
+
+//     }
+
+//     .app {
+//         width: 95%;
+//         margin: 0 auto;
+//         padding: 3rem 0;
+
+//         @include m.tablet {
+//             overflow: scroll;
+//         }
+//     }
+
+
+// }

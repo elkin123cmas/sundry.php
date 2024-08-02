@@ -1,3 +1,14 @@
+<!-- <?php
+        // $hoy = new DateTime();
+        // $hoy->setTime(0, 0); // Establece la hora a las 00:00 para comparar solo la fecha
+
+        // $quinceDiasFuturo = clone $hoy;
+        // $quinceDiasFuturo->modify('+15 days');
+
+        // // Formato a yyyy-mm-dd para el campo de fecha
+        // $maxFecha = $quinceDiasFuturo->format('Y-m-d');
+        ?> -->
+
 <h1 class="nombre-pagina">Crear nueva cita</h1>
 <p class="descripcion-pagina">Elige tus servicios a continuación</p>
 
@@ -23,7 +34,7 @@
             </div>
             <div class="campo">
                 <label for="fecha">Fecha</label>
-                <input type="date" id="fecha">
+                <input type="date" id="fecha" min="<?php echo date('Y-m-d'); ?>">
             </div>
             <div class="campo">
                 <label for="hora">Hora</label>
@@ -31,13 +42,13 @@
             </div>
         </form>
     </div>
-    <div id="paso-3" class="seccion">
+    <div id="paso-3" class="seccion contenido-resumen">
         <h2>Resumen</h2>
         <p class="text-center">Verifica que la información sea correcta</p>
     </div>
     <div class="paginacion">
-        <button id="anterior" class="boton">&laquo; Anterior</button>
         <button id="siguiente" class="boton">Siguiente &raquo;</button>
+        <button id="anterior" class="boton">&laquo; Anterior</button>
     </div>
 </div>
 <?php
