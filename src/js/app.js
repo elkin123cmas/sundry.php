@@ -177,7 +177,7 @@ function seleccionarServicio(servicio) {
         // console.log('no estaba agregado');
     }
 
-    console.log(cita);
+    // console.log(cita);
 }
 
 
@@ -240,7 +240,7 @@ function seleccionarHora() {
             mostrarAlerta('Hora no valida', 'error', '.formulario')
         } else {
             cita.hora = e.target.value;
-            console.log(cita);
+            // console.log(cita);
         }
         // console.log(hora);
     })
@@ -321,16 +321,63 @@ function mostrarResumen() {
     const nombreCliente = document.createElement('P');
     nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
 
+    //formatear la fecha en español
+    const fechaObj = new Date(fecha);
+    const mes = fechaObj.getMonth();
+    const dia = fechaObj.getDate() + 2;
+    const year = fechaObj.getFullYear();
+
+    const fechaUtc = new Date(Date.UTC(year, mes, dia));
+
+    const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const fechaFormateada = fechaUtc.toLocaleDateString('es-ES', opciones);
+    // console.log(fechaFormateada);
+
     const fechaCita = document.createElement('P');
-    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fechaFormateada}`;
 
     const horaCita = document.createElement('P');
     horaCita.innerHTML = `<span>Hora:</span> ${hora} Horas`;
 
+    //boton para crear cita
+    const botonReservar = document.createElement('BUTTON');
+    botonReservar.classList.add('boton');
+    botonReservar.textContent = 'Reservar Cita';
+    botonReservar.onclick = reservarCita;
+
+
     resumen.appendChild(nombreCliente);
     resumen.appendChild(fechaCita);
     resumen.appendChild(horaCita);
+    resumen.appendChild(botonReservar);
+
 
     // console.log(nombreCliente);
+
+}
+async function reservarCita() {
+    const { nombre, fecha, hora, servicios } = cita;
+
+    const idServicios = servicios.map(servicio => servicio.id);
+    const datos = new FormData();
+    datos.append('nombre', nombre);
+    datos.append('fecha', fecha);
+    datos.append('hora', hora);
+    datos.append('servicios', idServicios);
+    // console.log([...datos]);
+    // return;
+
+    //peticion hacia la api
+    const url = 'http://localhost:3000/api/citas';
+
+    const respuesta = await fetch(url, {
+        method: 'POST',
+        body: datos
+    });
+
+    const resultado = await respuesta.json();
+    console.log(resultado);
+
+
 
 }
