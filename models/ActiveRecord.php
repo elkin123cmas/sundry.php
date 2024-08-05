@@ -168,6 +168,7 @@ class ActiveRecord
         $query .= " ) VALUES ('";
         $query .= join("', '", array_values($atributos));
         $query .= "') ";
+        //debuguear el codgio para errores
 
         //return json_encode(['query' => $query]);
         // Resultado de la consulta

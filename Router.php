@@ -19,9 +19,9 @@ class Router
 
     public function comprobarRutas()
     {
-        
+
         // Proteger Rutas...
-        session_start();
+        isSession();
 
         // Arreglo de rutas protegidas...
         // $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
@@ -38,7 +38,7 @@ class Router
         }
 
 
-        if ( $fn ) {
+        if ($fn) {
             // Call user fn va a llamar una función cuando no sabemos cual sera
             call_user_func($fn, $this); // This es para pasar argumentos
         } else {

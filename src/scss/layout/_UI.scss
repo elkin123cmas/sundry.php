@@ -43,39 +43,25 @@ html {
     }
 }
 
+.barra {
+    margin: 0;
 
+    @include m.tablet {
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-// @use 'base/variables' as v;
-// @use 'base/mixins' as m;
+    .boton {
+        @include m.boton(v.$grisObscuro, v.$blanco);
 
-// .contenedor-app {
-//     @include m.tablet {
-//         display: grid;
-//         grid-template-columns: repeat(2, 1fr);
-//         min-height: 100vh;
-//     }
+        // margin: 0;
+        @include m.tablet {
+            margin: 0;
+            margin-top: 0;
 
-//     .imagen {
-//         height: 20rem;
-//         background-image: url(../img/imgSkull1.jpg);
-//         background-size: cover;
-//         background-position: center center;
+        }
 
-//         @include m.tablet {
-//             height: auto;
-//         }
-
-//     }
-
-//     .app {
-//         width: 95%;
-//         margin: 0 auto;
-//         padding: 3rem 0;
-
-//         @include m.tablet {
-//             overflow: scroll;
-//         }
-//     }
-
-
-// }
+    }
+}
