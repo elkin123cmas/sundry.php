@@ -140,6 +140,7 @@ class ActiveRecord
     }
 
     //buscar token
+
     public static function where($columna, $valor)
     {
         $query = "SELECT * FROM " . static::$tabla  . " WHERE {$columna} = '{$valor}'";
@@ -147,7 +148,13 @@ class ActiveRecord
         $resultado = self::consultarSQL($query);
         return array_shift($resultado);
     }
-
+    //consulta plana de sql (utilizar cuando los metodos del modelo no son suficientes)
+    public static function SQL($query)
+    {
+        // debuguear($query);
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
     // Obtener Registros con cierta cantidad
     public static function get($limite)
     {
@@ -168,9 +175,12 @@ class ActiveRecord
         $query .= " ) VALUES ('";
         $query .= join("', '", array_values($atributos));
         $query .= "') ";
-        //debuguear el codgio para errores
 
-        //return json_encode(['query' => $query]);
+        var_dump($query);
+        //debuguear el codgio para errores
+        // echo "<pre>{$query}</pre>";
+        // exit;
+        // return json_encode(['query' => $query]);
         // Resultado de la consulta
         $resultado = self::$db->query($query);
         return [
