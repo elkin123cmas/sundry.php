@@ -17,8 +17,9 @@ if (count($citas) === 0) {
     echo "<h3>No hay Citas agendadas en esta fecha</h3>";
 }
 ?>
-<div id="citas-admin">
-    <ul class="citas">
+
+<div class="contenedor-citas-admin">
+    <ul class="citas contenedorCitasAdmina">
         <?php
         $idCita = 0;
         foreach ($citas as $key => $cita) {
@@ -51,8 +52,10 @@ if (count($citas) === 0) {
             } // fin de foreach
             ?>
     </ul>
-
 </div>
+
+
+
 <?php
 $script = "<script src='build/js/buscador.js'></script>"
 ?>

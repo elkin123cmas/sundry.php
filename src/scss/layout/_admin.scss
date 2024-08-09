@@ -3,11 +3,13 @@
 .citas {
     list-style: none;
     padding: 0;
-    transition: all ease .4s;
+    text-align: center;
+    // background-color: rgb(237, 133, 133); //
 
     li {
         padding: .5rem;
-        border-top: 1px solid v.$blanco;
+        // border-top: 1px solid v.$blanco;
+
 
         p {
             font-weight: bold;
@@ -20,11 +22,27 @@
             font-weight: v.$regular;
         }
 
-        &:hover {
-            background-color: v.$negroServicios;
-        }
+        // &:hover {
+        //     background-color: v.$negroServicios;
+        // }
 
 
+    }
+}
+
+//contenedoir visor de citas admin
+.contenedorCitasAdmina {
+    border-radius: 1rem;
+    padding: 0 1rem;
+    background: rgb(13, 38, 112);
+    background: linear-gradient(270deg, rgba(13, 38, 112, 1) 0%, rgba(0, 0, 0, 1) 100%, rgba(13, 38, 112, 0.4234068627450981) 100%);
+    transition: all ease .4s;
+
+    &:hover {
+        margin-bottom: .5rem;
+        transform: scale(1.05);
+        background-color: v.$negroServicios;
+        border: 1px solid v.$enlaces;
     }
 }
 
@@ -33,11 +51,31 @@
 
     .acciones {
         margin: 0;
+        margin-bottom: 1rem;
+
+
     }
 
     .boton,
     .boton-eliminar {
         margin: 0;
         margin-bottom: 1rem;
+    }
+}
+
+.contenedor-li {
+    //
+    border-radius: 1rem;
+    padding: 0 1rem;
+    background: rgb(13, 38, 112);
+    background: linear-gradient(270deg, rgba(13, 38, 112, 1) 0%, rgba(0, 0, 0, 1) 100%, rgba(13, 38, 112, 0.4234068627450981) 100%);
+    transition: all ease .4s;
+
+
+    &:hover {
+        margin-bottom: 1rem;
+        transform: scale(1.05);
+        background-color: v.$negroServicios;
+        border: 1px solid v.$enlaces;
     }
 }

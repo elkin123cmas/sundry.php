@@ -176,7 +176,7 @@ class ActiveRecord
         $query .= join("', '", array_values($atributos));
         $query .= "') ";
 
-        var_dump($query);
+        // var_dump($query);
         //debuguear el codgio para errores
         // echo "<pre>{$query}</pre>";
         // exit;

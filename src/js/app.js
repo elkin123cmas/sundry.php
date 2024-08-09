@@ -2,6 +2,8 @@ let paso = 1;
 const pasoInicial = 1;
 const pasoFinal = 3;
 
+
+
 const cita = {
     id: '',
     nombre: '',
@@ -9,6 +11,8 @@ const cita = {
     hora: '',
     servicios: []
 }
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
     iniciarApp();
@@ -29,6 +33,7 @@ function iniciarApp() {
     seleccionarHora();// añade la hora  de la cita al objeto
 
     mostrarResumen();//muestra el resumen de la cita
+    cambiarTexto(); //imagen
 }
 
 
@@ -209,31 +214,6 @@ function seleccionarFecha() {
     })
 }
 
-
-// function seleccionarFecha() {
-//     const inputFecha = document.querySelector('#fecha');
-//     const hoy = new Date();
-//     hoy.setHours(0, 0, 0, 0); // Establece la hora a 00:00 para comparar solo la fecha
-
-//     // Función para validar la fecha seleccionada
-//     function validarFecha(e) {
-//         const fechaSeleccionada = new Date(e.target.value);
-//         const dia = fechaSeleccionada.getUTCDay();
-
-//         // Permitir fechas actuales y futuras
-//         if (fechaSeleccionada < hoy) {
-//             e.target.value = '';
-//             mostrarAlerta('No puedes seleccionar una fecha pasada', 'error');
-//         } else if ([0].includes(dia)) { // Si es domingo
-//             e.target.value = '';
-//             mostrarAlerta('Fines de semana no disponibles', 'error');
-//         } else {
-//             console.log('Fecha correcta seleccionada');
-//         }
-//     }
-
-//     inputFecha.addEventListener('input', validarFecha);
-// }
 
 
 function seleccionarHora() {

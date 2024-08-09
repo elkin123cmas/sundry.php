@@ -11,7 +11,10 @@
 
 <body>
     <div class="contenedor-app">
-        <div class="imagen"></div>
+        <div class="imagen">
+            <div class="neon-line"></div>
+            <div class="text-center" id="text-center">Prepárate para lo eterno</div>
+        </div>
         <div class="app">
             <?php echo $contenido; ?>
         </div>
@@ -19,7 +22,27 @@
     <?php
     echo $script ?? '';
     ?>
+    <script>
+        let index = 0;
+        const textos = [
+            "Prepárate para lo eterno",
+            "Explora la eternidad",
+            "Descubre lo inmortal",
+            "Vive lo inolvidable"
+        ];
 
+        function cambiarTexto() {
+            const textoElement = document.getElementById('text-center');
+            textoElement.textContent = textos[index];
+            index = (index + 1) % textos.length;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            cambiarTexto();
+            setInterval(cambiarTexto, 5000);
+        });
+    </script>
 </body>
+
 
 </html>
